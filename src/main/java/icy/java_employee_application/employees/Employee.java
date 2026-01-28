@@ -36,6 +36,10 @@ public class Employee {
     private LocalDate birthDate;
     private Integer age;
     private Integer salary;
+    
+    // чтобы hibernate заработал, нужно создать пустой конструктор
+    public Employee() {
+    }
 
     public Employee(Long id, String name, String email, LocalDate birthDate, Integer age, Integer salary) {
     this.id = id;
