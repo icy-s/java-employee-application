@@ -2,7 +2,33 @@ package icy.java_employee_application.employees;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+
+// аннотация ниже объявляет сущность, которая будет сохраняться в базу данных
+@Entity
+
+// определение названия таблицы в базе данных
+@Table(name = "employee")
+
 public class Employee {
+    // обозначаем какая строчка у нас будет primary key с помощью Id
+    @Id
+    @SequenceGenerator(
+        name = "employee_sequence",
+        sequenceName = "employee_sequence",
+        allocationSize = 1
+    )
+    // как база данных будет генерировать Id (для этого будет использоваться написанный выше sequence)
+    @GeneratedValue(
+        strategy = GenerationType.SEQUENCE,
+        generator = "employee_sequence"
+    )
+    
     // id обычно делаются как Long, чтобы до сохранения в бд id мог быть null
     private Long id;
     private String name;
