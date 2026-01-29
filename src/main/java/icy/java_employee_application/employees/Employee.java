@@ -1,6 +1,7 @@
 package icy.java_employee_application.employees;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 // аннотация ниже объявляет сущность, которая будет сохраняться в базу данных
 @Entity
@@ -34,19 +36,26 @@ public class Employee {
     private String name;
     private String email;
     private LocalDate birthDate;
+
+    // аннотация дает возможность не записывать поле 'age' в базу данных, так как оно будет высчитываться из birthDate
+    @Transient
     private Integer age;
+
     private Integer salary;
     
     // чтобы hibernate заработал, нужно создать пустой конструктор
     public Employee() {
     }
 
-    public Employee(Long id, String name, String email, LocalDate birthDate, Integer age, Integer salary) {
+    public Employee(Long id, String name, String email, LocalDate birthDate, Integer salary) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.birthDate = birthDate;
-    this.age = age;
+    this.age = Period.between(
+        birthDate,
+        LocalDate.now()
+    ).getYears();
     this.salary = salary;
     }
 
@@ -67,6 +76,12 @@ public class Employee {
     }
 
     public Integer getAge() {
+        if (age == null) {
+            this.age = Period.between(
+                birthDate,
+                LocalDate.now()
+            ).getYears();
+        }
         return age;
     }
 

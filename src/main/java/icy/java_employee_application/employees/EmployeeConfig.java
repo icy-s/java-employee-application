@@ -18,8 +18,8 @@ public class EmployeeConfig {
         return (args) -> {
             var employeeList = List.of(
                 // id больше не надо прописывать вручную, они будут генерироваться через sequence сами
-			    new Employee(null, "Mark", "mark@gmail.com", LocalDate.of(2000, 1, 10), 24, 10000),
-			    new Employee(null, "Sean", "sean@gmail.com", LocalDate.of(2002, 3, 10), 22, 20000)
+			    new Employee(null, "Mark", "mark@gmail.com", LocalDate.of(2000, 1, 10), 10000),
+			    new Employee(null, "Sean", "sean@gmail.com", LocalDate.of(2002, 3, 10), 20000)
 		    );
             employeeRepository.saveAll(employeeList);
         };
