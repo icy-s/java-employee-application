@@ -22,4 +22,18 @@ public class EmployeeService {
     public List<Employee>getAllEmployees() {
         return employeeRepository.findAll();
     }
+
+    public Employee createEmployee(Employee employee) {
+        if (employee.getId() != null) {
+          throw new IllegalArgumentException("Id must be empty");
+        }
+        if (employeeRepository.findByEmail(employee.getEmail())
+            .isPresent()) {
+          throw new IllegalArgumentException("Email is already registered");
+        }
+        if (employee.getSalary() <= 5000) {
+          throw new IllegalArgumentException("Salary can't be less than 5000");
+        }
+        return employeeRepository.save(employee);
+    }
 }

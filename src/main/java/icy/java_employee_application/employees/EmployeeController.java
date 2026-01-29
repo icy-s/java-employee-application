@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 // контроллер служит здесь только для обработки REST api запросов, бизнес логика находится в EmployeeService
@@ -24,4 +26,11 @@ public class EmployeeController {
 	public List<Employee> helloWorld() {
 		return employeeService.getAllEmployees();
 	}
+
+    @PostMapping
+    public Employee creatEmployee(
+        @RequestBody Employee employee
+    ) {
+        return employeeService.createEmployee(employee);
+    }
 }
