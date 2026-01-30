@@ -1,3 +1,5 @@
+<img src="readme/demo1.png" alt="Project Banner">
+
 # 🔗 Live Demo
 👉 **Try it here:** https://java-employee-application.onrender.com/
 
@@ -27,6 +29,8 @@ Provides REST endpoints to create, read, update, and delete employees, backed by
 - 🗃️ Spring Data JPA / Hibernate
 - 🐘 PostgreSQL
 - 📦 Maven
+
+<img src="readme/demo2.png" alt="Project Banner">
 
 ---
 
