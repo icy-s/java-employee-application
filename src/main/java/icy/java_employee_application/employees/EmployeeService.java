@@ -36,4 +36,12 @@ public class EmployeeService {
         }
         return employeeRepository.save(employee);
     }
+
+    public void deleteEmployee(Long id) {
+      if (employeeRepository.findById(id).isEmpty()) {
+        throw new IllegalArgumentException("Employee not found by id=%s"
+            .formatted(id));
+      }
+      employeeRepository.deleteById(id);
+    }
 }
