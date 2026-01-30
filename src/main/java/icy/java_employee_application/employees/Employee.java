@@ -89,4 +89,27 @@ public class Employee {
         return salary;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public void setSalary(Integer salary) {
+        this.salary = salary;
+    }
 }
