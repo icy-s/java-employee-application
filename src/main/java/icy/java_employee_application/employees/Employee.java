@@ -3,6 +3,9 @@ package icy.java_employee_application.employees;
 import java.time.LocalDate;
 import java.time.Period;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -35,6 +38,8 @@ public class Employee {
     private Long id;
     private String name;
     private String email;
+    @JsonProperty("birth")
+    @JsonAlias("birthDate")
     private LocalDate birthDate;
 
     // аннотация дает возможность не записывать поле 'age' в базу данных, так как оно будет высчитываться из birthDate
@@ -52,10 +57,12 @@ public class Employee {
     this.name = name;
     this.email = email;
     this.birthDate = birthDate;
-    this.age = Period.between(
-        birthDate,
-        LocalDate.now()
-    ).getYears();
+    if (birthDate != null) {
+        this.age = Period.between(
+            birthDate,
+            LocalDate.now()
+        ).getYears();
+    }
     this.salary = salary;
     }
 
@@ -76,7 +83,7 @@ public class Employee {
     }
 
     public Integer getAge() {
-        if (age == null) {
+        if (age == null && birthDate != null) {
             this.age = Period.between(
                 birthDate,
                 LocalDate.now()
