@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Employee CRM</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="app">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Employee CRM</p>
+          <h1>Manage your team in one workspace</h1>
+          <p class="subtitle">
+            Create, edit, and remove employees without extra clicks — all inside
+            a clean, focused interface.
+          </p>
+        </div>
+        <div class="hero-card">
+          <h2>Add an employee</h2>
+          <form id="create-form" class="form-grid">
+            <label>
+              Name
+              <input type="text" name="name" placeholder="Maria" required />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" placeholder="maria@company.com" required />
+            </label>
+            <label>
+              Date of birth
+              <input type="date" name="birth" required />
+            </label>
+            <label>
+              Salary (base)
+              <input type="number" name="salary" min="5001" placeholder="70000" required />
+            </label>
+            <button type="submit" class="primary">Create card</button>
+          </form>
+          <p class="hint">Minimum salary is 5001.</p>
+        </div>
+      </header>
+
+      <main>
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Employees</h2>
+              <p class="muted">Total: <span id="employee-count">0</span></p>
+            </div>
+            <div class="actions">
+              <button id="refresh" class="ghost">Refresh</button>
+              <button id="clear" class="ghost">Clear forms</button>
+            </div>
+          </div>
+          <div id="employee-list" class="employee-grid"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Editing</h2>
+              <p class="muted">Quickly update email and salary.</p>
+            </div>
+          </div>
+          <form id="update-form" class="form-grid two-columns">
+            <label>
+              ID
+              <input type="number" name="id" placeholder="1" required />
+            </label>
+            <label>
+              New email
+              <input type="email" name="email" placeholder="new@company.com" />
+            </label>
+            <label>
+              New salary (base)
+              <input type="number" name="salary" min="5001" placeholder="85000" />
+            </label>
+            <button type="submit" class="primary">Save changes</button>
+          </form>
+        </section>
+      </main>
+
+      <aside class="status" id="status"></aside>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
