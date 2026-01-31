@@ -34,7 +34,7 @@ public class EmployeeService {
             .isPresent()) {
           throw new IllegalArgumentException("Email is already registered");
         }
-        if (employee.getSalary() <= 5000) {
+        if (employee.getSalary() <= 4999) {
           throw new IllegalArgumentException("Salary can't be less than 5000");
         }
         return employeeRepository.save(employee);
@@ -67,7 +67,7 @@ public class EmployeeService {
         }
 
         if (salary != null) {
-          if (salary <= 5000) {
+          if (salary <= 4999) {
               throw new IllegalArgumentException("Salary must be bigger than 5000");
           }
           employee.setSalary(salary);
