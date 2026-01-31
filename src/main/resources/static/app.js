@@ -33,7 +33,6 @@ const mapEmployee = (employee) => {
       <span>📧 ${employee.email}</span>
       <span>🎂 ${employee.birth}</span>
       <span>💶 ${formatCurrency(employee.salary, "EUR")}</span>
-      <span>💵 ${formatCurrency(employee.salary, "USD")}</span>
     </div>
     <div class="employee-actions">
       <button class="edit">Fill form</button>
@@ -145,6 +144,9 @@ const removeEmployee = async (id) => {
 
 createForm.addEventListener("submit", async (event) => {
   event.preventDefault();
+  if (!createForm.reportValidity()) {
+    return;
+  }
   const payload = {
     name: createForm.name.value.trim(),
     email: createForm.email.value.trim(),
@@ -177,5 +179,27 @@ clearButton.addEventListener("click", () => {
   updateForm.reset();
   hideStatus();
 });
+
+const birthInput = createForm.querySelector('input[name="birth"]');
+if (birthInput) {
+  const today = new Date().toISOString().split("T")[0];
+  birthInput.max = today;
+
+  const validateBirthYear = () => {
+    if (!birthInput.value) {
+      birthInput.setCustomValidity("");
+      return;
+    }
+    const year = birthInput.value.split("-")[0];
+    if (year.length !== 4) {
+      birthInput.setCustomValidity("Year must be 4 digits.");
+      return;
+    }
+    birthInput.setCustomValidity("");
+  };
+
+  birthInput.addEventListener("input", validateBirthYear);
+  birthInput.addEventListener("change", validateBirthYear);
+}
 
 fetchEmployees();
