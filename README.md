@@ -1,4 +1,4 @@
-<img src="readme/demo1.png" alt="Project Banner">
+<img src="readme/demo_1.png" alt="Project Banner">
 
 # 🔗 Live Demo
 👉 **Try it here:** https://java-employee-application.onrender.com/
@@ -30,7 +30,7 @@ Provides REST endpoints to create, read, update, and delete employees, backed by
 - 🐘 PostgreSQL
 - 📦 Maven
 
-<img src="readme/demo2.png" alt="Project Banner">
+<img src="readme/demo_2.png" alt="Project Banner">
 
 ---
 
